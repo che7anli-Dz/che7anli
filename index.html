@@ -12,830 +12,266 @@ emailjs.init("HIuvoLZ6CfH8KAcOB");
 </script>
 
 <style>
-
 :root {
-  --bg: #0f1221;
-  --card: #1a1f36;
-  --card2: #232a4a;
-  --txt: #f1f2fa;
-  --muted: #9aa0c3;
-  --accent: #8b5cf6;
-  --accent2: #ec4899;
+  --bg:#0f1221;
+  --card:#1a1f36;
+  --card2:#232a4a;
+  --txt:#f1f2fa;
+  --muted:#9aa0c3;
+  --accent:#8b5cf6;
+  --accent2:#ec4899;
 }
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-
-body {
-  background: var(--bg);
-  color: var(--txt);
-  padding-bottom: 76px;
-}
-
+* { box-sizing:border-box; margin:0; padding:0; font-family:sans-serif; }
+body { background:var(--bg); color:var(--txt); padding-bottom:76px; }
 header {
-  position: sticky;
-  top: 0;
-  z-index: 9;
-  background: var(--bg);
-  padding: 14px 16px;
-  border-bottom: 1px solid #262c4d;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position:sticky; top:0; z-index:9; background:var(--bg);
+  padding:14px 16px; border-bottom:1px solid #262c4d;
+  display:flex; align-items:center; justify-content:space-between;
 }
-
-.logo {
-  font-size: 19px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
+.logo { font-size:19px; font-weight:bold; cursor:pointer; }
 .logo span {
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-
-.page {
-  display: none;
-  padding: 16px;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.page.active {
-  display: block;
-}
-
-.hero {
-  text-align: center;
-  padding: 28px 12px 20px;
-}
-
-.hero h1 {
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-
-.hero p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
+.page { display:none; padding:16px; max-width:480px; margin:0 auto; }
+.page.active { display:block; }
+.hero { text-align:center; padding:28px 12px 20px; }
+.hero h1 { font-size:24px; margin-bottom:8px; }
+.hero p { color:var(--muted); font-size:14px; margin-bottom:16px; }
 .btn {
-  display: inline-block;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
-  padding: 12px 28px;
-  border-radius: 10px;
-  color: #fff;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  display:inline-block; border:none; cursor:pointer; font-size:15px;
+  padding:12px 28px; border-radius:10px; color:#fff;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
 }
-
-.btn:disabled {
-  opacity: .6;
-  cursor: wait;
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-}
-
-.sec-title {
-  font-size: 17px;
-  margin: 20px 0 12px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
+.btn:disabled { opacity:.6; cursor:wait; }
+.btn-block { display:block; width:100%; }
+.sec-title { font-size:17px; margin:20px 0 12px; }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .game-card {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
-  border: 1px solid #262c4d;
-  overflow: hidden;
+  background:var(--card); border-radius:12px; padding:12px;
+  text-align:center; border:1px solid #262c4d; overflow:hidden;
 }
-
 .game-card .icon {
-  width: 100%;
-  height: 145px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #11162a;
+  width:100%; height:145px; margin-bottom:10px; border-radius:10px;
+  overflow:hidden; background:#11162a;
 }
-
-.game-card .icon img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-.game-card h3 {
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-
-.game-card small {
-  color: var(--muted);
-  display: block;
-  margin-bottom: 12px;
-}
-
-.btn-sm {
-  padding: 8px 18px;
-  font-size: 13px;
-}
-
+.game-card .icon img { width:100%; height:100%; display:block; object-fit:cover; }
+.game-card h3 { font-size:15px; margin-bottom:4px; }
+.game-card small { color:var(--muted); display:block; margin-bottom:12px; }
+.btn-sm { padding:8px 18px; font-size:13px; }
 .feat {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 14px;
-  margin-bottom: 10px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
+  background:var(--card); border-radius:12px; padding:14px;
+  margin-bottom:10px; display:flex; gap:12px; align-items:center;
 }
-
-.feat .fi {
-  font-size: 24px;
-}
-
-.feat b {
-  font-size: 14px;
-  display: block;
-}
-
-.feat small {
-  color: var(--muted);
-}
-
-.step {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
-  align-items: flex-start;
-}
-
+.feat .fi { font-size:24px; }
+.feat b { font-size:14px; display:block; }
+.feat small { color:var(--muted); }
+.step { display:flex; gap:12px; margin-bottom:12px; align-items:flex-start; }
 .step i {
-  font-style: normal;
-  background: var(--accent);
-  color: #fff;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  flex-shrink: 0;
+  font-style:normal; background:var(--accent); color:#fff;
+  width:26px; height:26px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; flex-shrink:0;
 }
-
-.step div b {
-  font-size: 14px;
-  display: block;
+.step div b { font-size:14px; display:block; }
+.step div small { color:var(--muted); }
+label { display:block; font-size:14px; margin:14px 0 6px; color:var(--muted); }
+input[type=text], input[type=tel], input[type=email], input[type=password] {
+  width:100%; padding:12px 14px; border-radius:10px; font-size:15px;
+  border:1px solid #303860; background:var(--card); color:var(--txt); outline:none;
 }
-
-.step div small {
-  color: var(--muted);
-}
-
-label {
-  display: block;
-  font-size: 14px;
-  margin: 14px 0 6px;
-  color: var(--muted);
-}
-
-input[type=text],
-input[type=tel],
-input[type=email],
-input[type=password] {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
-  font-size: 15px;
-  border: 1px solid #303860;
-  background: var(--card);
-  color: var(--txt);
-  outline: none;
-}
-
-input:focus {
-  border-color: var(--accent);
-}
-
-.pkg-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
+input:focus { border-color:var(--accent); }
+.pkg-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .pkg {
-  background: var(--card);
-  border: 2px solid #303860;
-  border-radius: 10px;
-  padding: 12px;
-  text-align: center;
-  cursor: pointer;
+  background:var(--card); border:2px solid #303860; border-radius:10px;
+  padding:12px; text-align:center; cursor:pointer;
 }
-
-.pkg.sel {
-  border-color: var(--accent);
-  background: var(--card2);
-}
-
-.pkg b {
-  font-size: 15px;
-  display: block;
-}
-
-.pkg small {
-  color: var(--muted);
-}
-
-.pay {
-  display: flex;
-  gap: 10px;
-}
-
-.pay .pkg {
-  flex: 1;
-}
-
+.pkg.sel { border-color:var(--accent); background:var(--card2); }
+.pkg b { font-size:15px; display:block; }
+.pkg small { color:var(--muted); }
+.pay { display:flex; gap:10px; }
+.pay .pkg { flex:1; }
 .order {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 14px;
-  margin-bottom: 10px;
-  border-right: 3px solid var(--accent);
+  background:var(--card); border-radius:12px; padding:14px;
+  margin-bottom:10px; border-right:3px solid var(--accent);
 }
-
-.order b {
-  font-size: 14px;
-}
-
-.order small {
-  color: var(--muted);
-  display: block;
-  margin-top: 4px;
-}
-
+.order b { font-size:14px; }
+.order small { color:var(--muted); display:block; margin-top:4px; }
 .status {
-  display: inline-block;
-  font-size: 12px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: #3a2f10;
-  color: #fbbf24;
-  margin-top: 8px;
+  display:inline-block; font-size:12px; padding:3px 10px;
+  border-radius:999px; background:#3a2f10; color:#fbbf24; margin-top:8px;
 }
-
-.empty {
-  text-align: center;
-  color: var(--muted);
-  padding: 40px 0;
-}
-
+.empty { text-align:center; color:var(--muted); padding:40px 0; }
 nav {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 9;
-  background: var(--card);
-  border-top: 1px solid #262c4d;
-  display: flex;
-  padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+  position:fixed; bottom:0; right:0; left:0; z-index:9;
+  background:var(--card); border-top:1px solid #262c4d; display:flex;
+  padding:8px 4px calc(8px + env(safe-area-inset-bottom));
 }
-
 nav button {
-  flex: 1;
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 11px;
-  cursor: pointer;
-  padding: 6px 0;
+  flex:1; background:none; border:none; color:var(--muted);
+  font-size:11px; cursor:pointer; padding:6px 0;
 }
-
-nav button .ni {
-  font-size: 20px;
-  display: block;
-  margin-bottom: 2px;
-}
-
-nav button.on {
-  color: var(--txt);
-}
-
+nav button .ni { font-size:20px; display:block; margin-bottom:2px; }
+nav button.on { color:var(--txt); }
 .toast {
-  position: fixed;
-  bottom: 90px;
-  right: 16px;
-  left: 16px;
-  background: #14532d;
-  color: #fff;
-  padding: 14px;
-  border-radius: 12px;
-  text-align: center;
-  display: none;
-  z-index: 10;
-  font-size: 14px;
+  position:fixed; bottom:90px; right:16px; left:16px;
+  background:#14532d; color:#fff; padding:14px; border-radius:12px;
+  text-align:center; display:none; z-index:10; font-size:14px;
 }
-
 .info-box {
-  background: var(--card);
-  border: 1px solid #303860;
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.8;
+  background:var(--card); border:1px solid #303860; border-radius:10px;
+  padding:12px; margin-top:12px; font-size:13px; color:var(--muted); line-height:1.8;
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-
-  <div class="logo" id="logoTap">
-    ⚡ متجر <span>الشحن</span>
-  </div>
-
-  <div
-    id="userChip"
-    style="font-size:12px;color:var(--muted)"
-  ></div>
-
+  <div class="logo" id="logoTap">⚡ متجر <span>الشحن</span></div>
+  <div id="userChip" style="font-size:12px;color:var(--muted)"></div>
 </header>
 
-
-<!-- =========================
-     الرئيسية
-========================= -->
-
+<!-- الرئيسية -->
 <section class="page active" id="p-home">
 
   <div class="hero">
-
-    <h1>
-      اشحن لعبتك المفضلة ⚡
-    </h1>
-
+    <h1>اشحن لعبتك المفضلة ⚡</h1>
     <p>
       شحن فوري وآمن — PUBG · Free Fire · FC Mobile<br>
       الدفع عبر BaridiMob
     </p>
-
-    <button
-      class="btn"
-      onclick="go('games')"
-    >
-      🎮 ابدأ الشحن الآن
-    </button>
-
+    <button class="btn" onclick="go('games')">🎮 ابدأ الشحن الآن</button>
   </div>
 
+  <h2 class="sec-title">الألعاب المتوفرة</h2>
+  <div class="grid" id="homeGames"></div>
 
-  <h2 class="sec-title">
-    الألعاب المتوفرة
-  </h2>
-
-  <div
-    class="grid"
-    id="homeGames"
-  ></div>
-
-
-  <h2 class="sec-title">
-    لماذا نحن؟
-  </h2>
-
+  <h2 class="sec-title">لماذا نحن؟</h2>
 
   <div class="feat">
-
-    <div class="fi">
-      ⚡
-    </div>
-
-    <div>
-      <b>
-        تسليم سريع
-      </b>
-
-      <small>
-        يتم تنفيذ معظم الطلبات في أقل من 15 دقيقة
-      </small>
-    </div>
-
+    <div class="fi">⚡</div>
+    <div><b>تسليم سريع</b><small>يتم تنفيذ معظم الطلبات في أقل من 15 دقيقة</small></div>
   </div>
-
-
   <div class="feat">
-
-    <div class="fi">
-      🔒
-    </div>
-
-    <div>
-      <b>
-        دفع آمن
-      </b>
-
-      <small>
-        الدفع عبر BaridiMob بدون مشاركة كلمات المرور
-      </small>
-    </div>
-
+    <div class="fi">🔒</div>
+    <div><b>دفع آمن</b><small>الدفع عبر BaridiMob بدون مشاركة كلمات المرور</small></div>
   </div>
-
-
   <div class="feat">
-
-    <div class="fi">
-      🎧
-    </div>
-
-    <div>
-      <b>
-        دعم مباشر
-      </b>
-
-      <small>
-        فريقنا متواجد 7/7 للإجابة عن استفساراتك
-      </small>
-    </div>
-
+    <div class="fi">🎧</div>
+    <div><b>دعم مباشر</b><small>فريقنا متواجد 7/7 للإجابة عن استفساراتك</small></div>
   </div>
 
-
-  <h2 class="sec-title">
-    كيف أطلب؟
-  </h2>
-
+  <h2 class="sec-title">كيف أطلب؟</h2>
 
   <div class="step">
-
     <i>1</i>
-
-    <div>
-
-      <b>
-        اختر اللعبة والباقة
-      </b>
-
-      <small>
-        حدد اللعبة ثم الباقة المناسبة لك
-      </small>
-
-    </div>
-
+    <div><b>اختر اللعبة والباقة</b><small>حدد اللعبة ثم الباقة المناسبة لك</small></div>
   </div>
-
-
   <div class="step">
-
     <i>2</i>
-
-    <div>
-
-      <b>
-        أدخل معلوماتك
-      </b>
-
-      <small>
-        اكتب اسمك ورقم هاتفك وPlayer ID
-      </small>
-
-    </div>
-
+    <div><b>أدخل معلوماتك</b><small>اكتب اسمك ورقم هاتفك وPlayer ID</small></div>
   </div>
-
-
   <div class="step">
-
     <i>3</i>
-
-    <div>
-
-      <b>
-        أرسل المبلغ وأكّد
-      </b>
-
-      <small>
-        أرسل المبلغ عبر BaridiMob ثم أكّد طلبك
-      </small>
-
-    </div>
-
+    <div><b>أرسل المبلغ وأكّد</b><small>أرسل المبلغ عبر BaridiMob ثم أكّد طلبك</small></div>
   </div>
-
-
   <div class="step">
-
     <i>4</i>
-
-    <div>
-
-      <b>
-        استلم الشحن ✅
-      </b>
-
-      <small>
-        سيتم تنفيذ طلبك في دقائق
-      </small>
-
-    </div>
-
+    <div><b>استلم الشحن ✅</b><small>سيتم تنفيذ طلبك في دقائق</small></div>
   </div>
 
 </section>
 
-
-<!-- =========================
-     الألعاب
-========================= -->
-
-<section
-  class="page"
-  id="p-games"
->
-
-  <h2 class="sec-title">
-    🎮 اختر لعبتك
-  </h2>
-
-  <div
-    class="grid"
-    id="gamesGrid"
-  ></div>
-
+<!-- الألعاب -->
+<section class="page" id="p-games">
+  <h2 class="sec-title">🎮 اختر لعبتك</h2>
+  <div class="grid" id="gamesGrid"></div>
 </section>
 
+<!-- الشحن -->
+<section class="page" id="p-topup">
 
-<!-- =========================
-     الشحن
-========================= -->
+  <h2 class="sec-title" id="topupTitle">💎 الشحن</h2>
 
-<section
-  class="page"
-  id="p-topup"
->
+  <label>👤 اسم الزبون</label>
+  <input type="text" id="customerName" placeholder="اكتب اسمك الكامل">
 
-  <h2
-    class="sec-title"
-    id="topupTitle"
-  >
-    💎 الشحن
-  </h2>
+  <label>📱 رقم الهاتف</label>
+  <input type="tel" id="customerPhone" placeholder="05XXXXXXXX" inputmode="tel">
 
+  <label>📧 بريدك الإلكتروني (Gmail)</label>
+  <input type="email" id="customerEmail" placeholder="example@gmail.com">
 
-  <label>
-    👤 اسم الزبون
-  </label>
+  <label>🆔 Player ID الخاص بك</label>
+  <input type="text" id="playerId" placeholder="مثال: 5123456789" inputmode="numeric">
 
-  <input
-    type="text"
-    id="customerName"
-    placeholder="اكتب اسمك الكامل"
-  >
+  <label>اختر الباقة</label>
+  <div class="pkg-grid" id="pkgGrid"></div>
 
-
-  <label>
-    📱 رقم الهاتف
-  </label>
-
-  <input
-    type="tel"
-    id="customerPhone"
-    placeholder="05XXXXXXXX"
-    inputmode="tel"
-  >
-
-
-  <label>
-    📧 بريدك الإلكتروني (Gmail)
-  </label>
-
-  <input
-    type="email"
-    id="customerEmail"
-    placeholder="example@gmail.com"
-  >
-
-
-  <label>
-    🆔 Player ID الخاص بك
-  </label>
-
-  <input
-    type="text"
-    id="playerId"
-    placeholder="مثال: 5123456789"
-    inputmode="numeric"
-  >
-
-
-  <label>
-    اختر الباقة
-  </label>
-
-  <div
-    class="pkg-grid"
-    id="pkgGrid"
-  ></div>
-
-
-  <label>
-    طريقة الدفع
-  </label>
-
-
+  <label>طريقة الدفع</label>
   <div class="pay">
-
-    <div
-      class="pkg"
-      id="pay-bm"
-      onclick="pickPay('BaridiMob')"
-    >
-
-      <b>
-        📮 BaridiMob
-      </b>
-
-      <small>
-        CCP / RIP
-      </small>
-
+    <div class="pkg" id="pay-bm" onclick="pickPay('BaridiMob')">
+      <b>📮 BaridiMob</b>
+      <small>CCP / RIP</small>
     </div>
-
   </div>
 
-
-  <div
-    id="payInfo"
-    class="info-box"
-  >
+  <div id="payInfo" class="info-box">
     💳 اختر BaridiMob لمعرفة معلومات التحويل.
   </div>
 
-
   <br>
 
-
-  <button
-    class="btn btn-block"
-    id="submitBtn"
-    onclick="submitOrder()"
-  >
+  <button class="btn btn-block" id="submitBtn" onclick="submitOrder()">
     ✅ تأكيد الطلب
   </button>
 
 </section>
 
-
-<!-- =========================
-     الطلبات
-========================= -->
-
-<section
-  class="page"
-  id="p-orders"
->
-
-  <h2 class="sec-title">
-    📦 طلباتي
-  </h2>
-
-  <div
-    id="ordersList"
-  ></div>
-
+<!-- الطلبات -->
+<section class="page" id="p-orders">
+  <h2 class="sec-title">📦 طلباتي</h2>
+  <div id="ordersList"></div>
 </section>
 
+<!-- الحساب -->
+<section class="page" id="p-account">
 
-<!-- =========================
-     الحساب
-========================= -->
+  <h2 class="sec-title">👤 حسابي</h2>
 
-<section
-  class="page"
-  id="p-account"
->
+  <label>الاسم</label>
+  <input type="text" id="accName" placeholder="اسمك">
 
-  <h2 class="sec-title">
-    👤 حسابي
-  </h2>
+  <label>رقم الهاتف</label>
+  <input type="tel" id="accPhone" placeholder="05XXXXXXXX">
 
+  <br><br>
 
-  <label>
-    الاسم
-  </label>
+  <button class="btn btn-block" onclick="saveAccount()">💾 حفظ</button>
 
-  <input
-    type="text"
-    id="accName"
-    placeholder="اسمك"
-  >
-
-
-  <label>
-    رقم الهاتف
-  </label>
-
-  <input
-    type="tel"
-    id="accPhone"
-    placeholder="05XXXXXXXX"
-  >
-
-
-  <br>
-  <br>
-
-
-  <button
-    class="btn btn-block"
-    onclick="saveAccount()"
-  >
-    💾 حفظ
-  </button>
-
-
-  <p
-    style="font-size:12px;color:var(--muted);margin-top:12px"
-  >
+  <p style="font-size:12px;color:var(--muted);margin-top:12px">
     🔐 بياناتك محفوظة على جهازك لتسهيل الطلبات القادمة.
   </p>
 
 </section>
 
+<!-- الإدارة -->
+<section class="page" id="p-admin">
 
-<!-- =========================
-     الإدارة
-========================= -->
-
-<section
-  class="page"
-  id="p-admin"
->
-
-  <h2 class="sec-title">
-    🔐 لوحة الإدارة
-  </h2>
+  <h2 class="sec-title">🔐 لوحة الإدارة</h2>
 
   <div id="adminLocked">
-
-    <div class="info-box">
-      🔑 أدخل كلمة المرور.
-    </div>
-
+    <div class="info-box">🔑 أدخل كلمة المرور.</div>
     <br>
-
-    <input
-      type="password"
-      id="adminPass"
-      placeholder="كلمة المرور"
-    >
-
+    <input type="password" id="adminPass" placeholder="كلمة المرور">
     <br><br>
-
-    <button
-      class="btn btn-block"
-      onclick="adminLogin()"
-    >
-      دخول
-    </button>
-
+    <button class="btn btn-block" onclick="adminLogin()">دخول</button>
   </div>
 
+  <div id="adminPanel" style="display:none">
 
-  <div
-    id="adminPanel"
-    style="display:none"
-  >
-
-    <div class="info-box">
-      📥 انسخ الطلب من Gmail والصقه هنا لتتبع حالته.
-    </div>
+    <div class="info-box">📥 انسخ الطلب من Gmail والصقه هنا لتتبع حالته.</div>
 
     <br>
 
@@ -862,30 +298,19 @@ nav button.on {
 
     <br><br>
 
-    <button
-      class="btn btn-block"
-      onclick="adminAddOrder()"
-    >
-      ➕ إضافة الطلب
-    </button>
+    <button class="btn btn-block" onclick="adminAddOrder()">➕ إضافة الطلب</button>
 
     <br>
 
     <hr style="border-color:#262c4d;margin:20px 0">
 
-    <h2 class="sec-title">
-      📋 الطلبات
-    </h2>
+    <h2 class="sec-title">📋 الطلبات</h2>
 
     <div id="adminOrders"></div>
 
     <br>
 
-    <button
-      class="btn btn-block"
-      onclick="adminLogout()"
-      style="background:#7f1d1d"
-    >
+    <button class="btn btn-block" onclick="adminLogout()" style="background:#7f1d1d">
       🚪 خروج
     </button>
 
@@ -893,77 +318,23 @@ nav button.on {
 
 </section>
 
-
-<!-- =========================
-     القائمة السفلية
-========================= -->
-
+<!-- القائمة -->
 <nav>
-
-  <button
-    class="on"
-    data-p="home"
-    onclick="go('home')"
-  >
-
-    <span class="ni">
-      🏠
-    </span>
-
-    الرئيسية
-
+  <button class="on" data-p="home" onclick="go('home')">
+    <span class="ni">🏠</span>الرئيسية
   </button>
-
-
-  <button
-    data-p="games"
-    onclick="go('games')"
-  >
-
-    <span class="ni">
-      🎮
-    </span>
-
-    الألعاب
-
+  <button data-p="games" onclick="go('games')">
+    <span class="ni">🎮</span>الألعاب
   </button>
-
-
-  <button
-    data-p="orders"
-    onclick="go('orders')"
-  >
-
-    <span class="ni">
-      📦
-    </span>
-
-    طلباتي
-
+  <button data-p="orders" onclick="go('orders')">
+    <span class="ni">📦</span>طلباتي
   </button>
-
-
-  <button
-    data-p="account"
-    onclick="go('account')"
-  >
-
-    <span class="ni">
-      👤
-    </span>
-
-    حسابي
-
+  <button data-p="account" onclick="go('account')">
+    <span class="ni">👤</span>حسابي
   </button>
-
 </nav>
 
-
-<div
-  class="toast"
-  id="toast"
-></div>
-
+<div class="toast" id="toast"></div>
 
 <script>
 
@@ -972,167 +343,81 @@ nav button.on {
 ========================= */
 
 var GAMES = [
-
   {
-    id: "pubg",
-
-    image: "images/pubg.jpg",
-
-    name: "PUBG Mobile",
-
-    sub: "شدات UC",
-
-    pkgs: [
-      {
-        n: "60 UC",
-        p: 500
-      },
-      {
-        n: "325 UC",
-        p: 2400
-      },
-      {
-        n: "660 UC",
-        p: 4700
-      },
-      {
-        n: "1800 UC",
-        p: 12000
-      }
+    id:"pubg",
+    image:"images/pubg.jpg",
+    name:"PUBG Mobile",
+    sub:"شدات UC",
+    pkgs:[
+      {n:"60 UC",p:500},
+      {n:"325 UC",p:2400},
+      {n:"660 UC",p:4700},
+      {n:"1800 UC",p:12000}
     ]
   },
-
-
   {
-    id: "ff",
-
-    image: "images/freefire.jpg",
-
-    name: "Free Fire",
-
-    sub: "جواهر",
-
-    pkgs: [
-      {
-        n: "100 جوهرة",
-        p: 400
-      },
-      {
-        n: "310 جوهرة",
-        p: 1150
-      },
-      {
-        n: "520 جوهرة",
-        p: 1900
-      },
-      {
-        n: "1080 جوهرة",
-        p: 3700
-      }
+    id:"ff",
+    image:"images/freefire.jpg",
+    name:"Free Fire",
+    sub:"جواهر",
+    pkgs:[
+      {n:"100 جوهرة",p:400},
+      {n:"310 جوهرة",p:1150},
+      {n:"520 جوهرة",p:1900},
+      {n:"1080 جوهرة",p:3700}
     ]
   },
-
-
   {
-    id: "fc",
-
-    image: "images/fcmobile.jpg",
-
-    name: "FC Mobile",
-
-    sub: "نقاط FIFA",
-
-    pkgs: [
-      {
-        n: "100 نقطة",
-        p: 600
-      },
-      {
-        n: "520 نقطة",
-        p: 2800
-      },
-      {
-        n: "1050 نقطة",
-        p: 5500
-      }
+    id:"fc",
+    image:"images/fcmobile.jpg",
+    name:"FC Mobile",
+    sub:"نقاط FIFA",
+    pkgs:[
+      {n:"100 نقطة",p:600},
+      {n:"520 نقطة",p:2800},
+      {n:"1050 نقطة",p:5500}
     ]
   },
-
-
   {
-    id: "other",
-
-    image: "images/other.jpg",
-
-    name: "ألعاب أخرى",
-
-    sub: "اطلب لعبتك",
-
-    pkgs: [
-      {
-        n: "باقة صغيرة",
-        p: 500
-      },
-      {
-        n: "باقة متوسطة",
-        p: 1500
-      },
-      {
-        n: "باقة كبيرة",
-        p: 3000
-      }
+    id:"other",
+    image:"images/other.jpg",
+    name:"ألعاب أخرى",
+    sub:"اطلب لعبتك",
+    pkgs:[
+      {n:"باقة صغيرة",p:500},
+      {n:"باقة متوسطة",p:1500},
+      {n:"باقة كبيرة",p:3000}
     ]
   }
-
 ];
-
 
 /* =========================
    المتغيرات
 ========================= */
 
 var curGame = null;
-
 var curPkg = null;
-
 var curPay = null;
 
-
 /* =========================
-   معلومات BaridiMob
+   BaridiMob
 ========================= */
 
-var STORE_RIP =
-  "00799999002570305236";
-
+var STORE_RIP = "00799999002570305236";
 
 /* =========================
    EmailJS
 ========================= */
 
-var EMAILJS_SERVICE =
-  "service_npsrgnv";
-
-
-/* قالب الطلب الذي يصلك أنت */
-
-var EMAILJS_TEMPLATE =
-  "template_o5ejh9d";
-
-
-/* قالب تأكيد الطلب الذي يصل للزبون */
-
-var EMAILJS_TEMPLATE_CUSTOMER =
-  "template_n04bh31";
-
+var EMAILJS_SERVICE = "service_npsrgnv";
+var EMAILJS_TEMPLATE = "template_o5ejh9d";
+var EMAILJS_TEMPLATE_CUSTOMER = "template_n04bh3l"; // ✅ تم التصحيح: آخر حرف L وليس الرقم 1
 
 /* =========================
    كلمة مرور الإدارة
 ========================= */
 
-var ADMIN_PASSWORD =
-  "smail2931";
-
+var ADMIN_PASSWORD = "smail2931";
 
 /* =========================
    التنقل
@@ -1140,65 +425,23 @@ var ADMIN_PASSWORD =
 
 function go(p) {
 
-  document
-    .querySelectorAll(".page")
-    .forEach(function(s) {
+  document.querySelectorAll(".page").forEach(function(s) {
+    s.classList.remove("active");
+  });
 
-      s.classList.remove("active");
+  var page = document.getElementById("p-" + p);
+  if(page) { page.classList.add("active"); }
 
-    });
+  document.querySelectorAll("nav button").forEach(function(b) {
+    b.classList.toggle("on", b.dataset.p === p);
+  });
 
+  if(p === "orders") { renderOrders(); }
+  if(p === "account") { loadAccount(); }
+  if(p === "admin") { showAdminLogin(); }
 
-  var page =
-    document.getElementById(
-      "p-" + p
-    );
-
-
-  if (page) {
-
-    page.classList.add("active");
-
-  }
-
-
-  document
-    .querySelectorAll("nav button")
-    .forEach(function(b) {
-
-      b.classList.toggle(
-        "on",
-        b.dataset.p === p
-      );
-
-    });
-
-
-  if (p === "orders") {
-
-    renderOrders();
-
-  }
-
-
-  if (p === "account") {
-
-    loadAccount();
-
-  }
-
-
-  if (p === "admin") {
-
-    showAdminLogin();
-
-  }
-
-
-  window.scrollTo(0, 0);
-
+  window.scrollTo(0,0);
 }
-
 
 /* =========================
    كروت الألعاب
@@ -1206,60 +449,28 @@ function go(p) {
 
 function gameCards(el) {
 
-  el.innerHTML =
-    GAMES.map(function(g) {
+  el.innerHTML = GAMES.map(function(g) {
 
-      return `
-
-        <div class="game-card">
-
-          <div class="icon">
-
-            <img
-              src="${g.image}"
-              alt="${g.name}"
-              onerror="this.style.display='none';this.parentElement.innerHTML='🎮';"
-            >
-
-          </div>
-
-          <h3>
-            ${g.name}
-          </h3>
-
-          <small>
-            ${g.sub}
-          </small>
-
-          <button
-            class="btn btn-sm"
-            onclick="startTopup('${g.id}')"
+    return `
+      <div class="game-card">
+        <div class="icon">
+          <img
+            src="${g.image}"
+            alt="${g.name}"
+            onerror="this.style.display='none';this.parentElement.innerHTML='🎮';"
           >
-            ⚡ اشحن
-          </button>
-
         </div>
+        <h3>${g.name}</h3>
+        <small>${g.sub}</small>
+        <button class="btn btn-sm" onclick="startTopup('${g.id}')">⚡ اشحن</button>
+      </div>
+    `;
 
-      `;
-
-    }).join("");
-
+  }).join("");
 }
 
-
-gameCards(
-  document.getElementById(
-    "homeGames"
-  )
-);
-
-
-gameCards(
-  document.getElementById(
-    "gamesGrid"
-  )
-);
-
+gameCards(document.getElementById("homeGames"));
+gameCards(document.getElementById("gamesGrid"));
 
 /* =========================
    بدء الشحن
@@ -1267,96 +478,40 @@ gameCards(
 
 function startTopup(id) {
 
-  curGame =
-    GAMES.find(function(g) {
-
-      return g.id === id;
-
-    });
-
-
+  curGame = GAMES.find(function(g) { return g.id === id; });
   curPkg = null;
-
   curPay = null;
 
+  document.getElementById("topupTitle").textContent = "💎 " + curGame.name;
 
-  document.getElementById(
-    "topupTitle"
-  ).textContent =
-    "💎 " + curGame.name;
+  document.getElementById("customerName").value =
+    localStorage.getItem("customerName") || "";
 
+  document.getElementById("customerPhone").value =
+    localStorage.getItem("customerPhone") || "";
 
-  document.getElementById(
-    "customerName"
-  ).value =
-    localStorage.getItem(
-      "customerName"
-    ) || "";
+  document.getElementById("customerEmail").value = "";
+  document.getElementById("playerId").value = "";
 
+  document.getElementById("pkgGrid").innerHTML =
+    curGame.pkgs.map(function(pkg,index) {
 
-  document.getElementById(
-    "customerPhone"
-  ).value =
-    localStorage.getItem(
-      "customerPhone"
-    ) || "";
+      return `
+        <div class="pkg" onclick="pickPkg(${index})" id="pkg-${index}">
+          <b>${pkg.n}</b>
+          <small>${pkg.p} دج</small>
+        </div>
+      `;
 
+    }).join("");
 
-  document.getElementById(
-    "customerEmail"
-  ).value = "";
-
-
-  document.getElementById(
-    "playerId"
-  ).value = "";
-
-
-  document.getElementById(
-    "pkgGrid"
-  ).innerHTML =
-    curGame.pkgs
-      .map(function(pkg, index) {
-
-        return `
-
-          <div
-            class="pkg"
-            onclick="pickPkg(${index})"
-            id="pkg-${index}"
-          >
-
-            <b>
-              ${pkg.n}
-            </b>
-
-            <small>
-              ${pkg.p} دج
-            </small>
-
-          </div>
-
-        `;
-
-      })
-      .join("");
-
-
-  document.getElementById(
-    "payInfo"
-  ).innerHTML =
+  document.getElementById("payInfo").innerHTML =
     "💳 اختر BaridiMob لمعرفة معلومات التحويل.";
 
-
-  document.getElementById(
-    "pay-bm"
-  ).classList.remove("sel");
-
+  document.getElementById("pay-bm").classList.remove("sel");
 
   go("topup");
-
 }
-
 
 /* =========================
    اختيار الباقة
@@ -1364,450 +519,213 @@ function startTopup(id) {
 
 function pickPkg(index) {
 
-  curPkg =
-    curGame.pkgs[index];
+  curPkg = curGame.pkgs[index];
 
+  document.querySelectorAll("#pkgGrid .pkg").forEach(function(el) {
+    el.classList.remove("sel");
+  });
 
-  document
-    .querySelectorAll(
-      "#pkgGrid .pkg"
-    )
-    .forEach(function(el) {
-
-      el.classList.remove("sel");
-
-    });
-
-
-  var selected =
-    document.getElementById(
-      "pkg-" + index
-    );
-
-
-  if (selected) {
-
-    selected.classList.add("sel");
-
-  }
-
+  var selected = document.getElementById("pkg-" + index);
+  if(selected) { selected.classList.add("sel"); }
 }
 
-
 /* =========================
-   اختيار BaridiMob
+   اختيار الدفع
 ========================= */
 
 function pickPay(method) {
 
   curPay = method;
 
+  document.querySelectorAll(".pay .pkg").forEach(function(el) {
+    el.classList.remove("sel");
+  });
 
-  document
-    .querySelectorAll(
-      ".pay .pkg"
-    )
-    .forEach(function(el) {
+  if(method === "BaridiMob") {
 
-      el.classList.remove("sel");
+    document.getElementById("pay-bm").classList.add("sel");
 
-    });
-
-
-  if (method === "BaridiMob") {
-
-    document
-      .getElementById("pay-bm")
-      .classList.add("sel");
-
-
-    document.getElementById(
-      "payInfo"
-    ).innerHTML =
-
+    document.getElementById("payInfo").innerHTML =
       "📮 <b>الدفع عبر BaridiMob</b><br><br>" +
-
       "حوّل المبلغ إلى الحساب التالي:<br><br>" +
-
-      "RIP / CCP: <b>" +
-
-      STORE_RIP +
-
-      "</b><br><br>" +
-
-      "بعد التحويل اضغط على " +
-
-      "<b>تأكيد الطلب</b>.";
-
+      "RIP / CCP: <b>" + STORE_RIP + "</b><br><br>" +
+      "بعد التحويل اضغط على <b>تأكيد الطلب</b>.";
   }
-
 }
 
-
-/* =========================
+/* =========================================================
    إرسال الطلب
-========================= */
+========================================================= */
 
 function submitOrder() {
 
-  var customerName =
-    document
-      .getElementById(
-        "customerName"
-      )
-      .value
-      .trim();
+  var customerName = document.getElementById("customerName").value.trim();
+  var customerPhone = document.getElementById("customerPhone").value.trim();
+  var customerEmail = document.getElementById("customerEmail").value.trim();
+  var playerId = document.getElementById("playerId").value.trim();
 
+  /* التحقق */
 
-  var customerPhone =
-    document
-      .getElementById(
-        "customerPhone"
-      )
-      .value
-      .trim();
+  if(!customerName) { showToast("⚠️ يرجى كتابة اسم الزبون"); return; }
+  if(!customerPhone) { showToast("⚠️ يرجى كتابة رقم الهاتف"); return; }
+  if(!customerEmail) { showToast("⚠️ يرجى كتابة بريدك الإلكتروني"); return; }
 
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  var customerEmail =
-    document
-      .getElementById(
-        "customerEmail"
-      )
-      .value
-      .trim();
-
-
-  var playerId =
-    document
-      .getElementById(
-        "playerId"
-      )
-      .value
-      .trim();
-
-
-  if (!customerName) {
-
-    showToast(
-      "⚠️ يرجى كتابة اسم الزبون"
-    );
-
+  if(!emailPattern.test(customerEmail)) {
+    showToast("⚠️ يرجى كتابة بريد إلكتروني صحيح");
     return;
-
   }
 
+  if(!playerId) { showToast("⚠️ يرجى كتابة Player ID"); return; }
+  if(!curGame) { showToast("⚠️ يرجى اختيار اللعبة"); return; }
+  if(!curPkg) { showToast("⚠️ يرجى اختيار الباقة"); return; }
+  if(!curPay) { showToast("⚠️ يرجى اختيار BaridiMob"); return; }
 
-  if (!customerPhone) {
+  /* إنشاء الطلب */
 
-    showToast(
-      "⚠️ يرجى كتابة رقم الهاتف"
-    );
-
-    return;
-
-  }
-
-
-  if (!customerEmail) {
-
-    showToast(
-      "⚠️ يرجى كتابة بريدك الإلكتروني"
-    );
-
-    return;
-
-  }
-
-
-  if (!playerId) {
-
-    showToast(
-      "⚠️ يرجى كتابة Player ID"
-    );
-
-    return;
-
-  }
-
-
-  if (!curPkg) {
-
-    showToast(
-      "⚠️ يرجى اختيار الباقة"
-    );
-
-    return;
-
-  }
-
-
-  if (!curPay) {
-
-    showToast(
-      "⚠️ يرجى اختيار BaridiMob"
-    );
-
-    return;
-
-  }
-
-
-  var orderId =
-    "ORD-" +
-    Date.now();
-
+  var orderId = "ORD-" + Date.now();
 
   var order = {
-
-    id:
-      orderId,
-
-    customerName:
-      customerName,
-
-    customerPhone:
-      customerPhone,
-
-    customerEmail:
-      customerEmail,
-
-    playerId:
-      playerId,
-
-    game:
-      curGame.name,
-
-    package:
-      curPkg.n,
-
-    price:
-      curPkg.p,
-
-    payment:
-      curPay,
-
-    status:
-      "قيد المراجعة",
-
-    date:
-      new Date()
-        .toLocaleString("ar-DZ")
-
+    id:orderId,
+    customerName:customerName,
+    customerPhone:customerPhone,
+    customerEmail:customerEmail,
+    playerId:playerId,
+    game:curGame.name,
+    package:curPkg.n,
+    price:curPkg.p,
+    payment:curPay,
+    status:"قيد المراجعة",
+    date:new Date().toLocaleString("ar-DZ")
   };
-
 
   /* حفظ معلومات العميل */
 
-  localStorage.setItem(
-    "customerName",
-    customerName
-  );
-
-
-  localStorage.setItem(
-    "customerPhone",
-    customerPhone
-  );
-
+  localStorage.setItem("customerName", customerName);
+  localStorage.setItem("customerPhone", customerPhone);
 
   /* حفظ الطلب */
 
-  var orders =
-    JSON.parse(
-      localStorage.getItem(
-        "orders"
-      ) || "[]"
-    );
-
-
+  var orders = JSON.parse(localStorage.getItem("orders") || "[]");
   orders.unshift(order);
+  localStorage.setItem("orders", JSON.stringify(orders));
 
+  /* تعطيل الزر */
 
-  localStorage.setItem(
-    "orders",
-    JSON.stringify(orders)
-  );
-
-
-  /* زر الإرسال */
-
-  var btn =
-    document.getElementById(
-      "submitBtn"
-    );
-
-
+  var btn = document.getElementById("submitBtn");
   btn.disabled = true;
+  btn.textContent = "⏳ جاري إرسال الطلب...";
 
-  btn.textContent =
-    "⏳ جاري إرسال الطلب...";
-
-
-  /* =========================
-     بيانات إيميل الإدارة
-  ========================= */
+  /* بيانات الإدارة */
 
   var templateParams = {
-
-    order_id:
-      orderId,
-
-    customer_name:
-      customerName,
-
-    customer_phone:
-      customerPhone,
-
-    customer_email:
-      customerEmail,
-
-    player_id:
-      playerId,
-
-    game:
-      curGame.name,
-
-    package:
-      curPkg.n,
-
-    price:
-      curPkg.p + " دج",
-
-    payment:
-      curPay,
-
-    order_date:
-      order.date,
-
-    status:
-      order.status
-
+    order_id:orderId,
+    customer_name:customerName,
+    customer_phone:customerPhone,
+    customer_email:customerEmail,
+    player_id:playerId,
+    game:curGame.name,
+    package:curPkg.n,
+    price:curPkg.p + " دج",
+    payment:curPay,
+    order_date:order.date,
+    status:order.status
   };
 
+  /* بيانات الزبون */
 
-  /* =========================
-     إرسال الطلب إلى الإدارة
-  ========================= */
+  var customerTemplateParams = {
+    customer_email:customerEmail,
+    customer_name:customerName,
+    order_id:orderId,
+    game:curGame.name,
+    package:curPkg.n,
+    price:curPkg.p + " دج",
+    payment:curPay,
+    player_id:playerId,
+    order_date:order.date,
+    status:order.status
+  };
 
-  var adminEmailPromise =
+  console.log("📧 Customer email:", customerEmail);
+  console.log("📦 Customer template:", EMAILJS_TEMPLATE_CUSTOMER);
 
-    emailjs.send(
+  /* إرسال الإدارة أولاً */
 
-      EMAILJS_SERVICE,
+  emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, templateParams)
 
-      EMAILJS_TEMPLATE,
+  .then(function(adminResult) {
 
-      templateParams
+    console.log("✅ Admin email sent successfully", adminResult);
 
-    );
+    /* ننتظر 1.2 ثانية قبل إرسال رسالة الزبون */
 
-
-  /* =========================
-     إيميل تأكيد الزبون
-  ========================= */
-
-  var customerEmailPromise =
-
-    emailjs.send(
-
-      EMAILJS_SERVICE,
-
-      EMAILJS_TEMPLATE_CUSTOMER,
-
-      {
-
-        customer_email:
-          customerEmail,
-
-        customer_name:
-          customerName,
-
-        order_id:
-          orderId,
-
-        game:
-          curGame.name,
-
-        package:
-          curPkg.n,
-
-        price:
-          curPkg.p + " دج",
-
-        payment:
-          curPay,
-
-        player_id:
-          playerId,
-
-        order_date:
-          order.date,
-
-        status:
-          order.status
-
-      }
-
-    );
-
-
-  /* ننتظر الإيميلين */
-
-  Promise.all([
-    adminEmailPromise,
-    customerEmailPromise
-  ])
-
-  .then(function() {
-
-    btn.disabled = false;
-
-    btn.textContent =
-      "✅ تأكيد الطلب";
-
-
-    showToast(
-      "✅ تم إرسال الطلب ووصلت رسالة تأكيد إلى بريدك"
-    );
-
-
-    setTimeout(function() {
-
-      go("orders");
-
-    }, 1500);
+    return new Promise(function(resolve) {
+      setTimeout(function() { resolve(); }, 1200);
+    });
 
   })
 
-  .catch(function(error) {
+  /* إرسال رسالة الزبون بعد الانتظار */
 
-    console.error(
-      "EmailJS Error:",
-      error
+  .then(function() {
+
+    console.log("📧 Sending customer email to:", customerEmail);
+
+    return emailjs.send(
+      EMAILJS_SERVICE,
+      EMAILJS_TEMPLATE_CUSTOMER,
+      customerTemplateParams
     );
 
+  })
+
+  /* نجاح الإرسالين */
+
+  .then(function(customerResult) {
+
+    console.log("✅ Customer email sent successfully", customerResult);
 
     btn.disabled = false;
+    btn.textContent = "✅ تأكيد الطلب";
 
-    btn.textContent =
-      "✅ تأكيد الطلب";
+    showToast("✅ تم إرسال الطلب وإرسال تأكيد إلى بريدك");
 
+    setTimeout(function() { go("orders"); }, 2000);
 
-    showToast(
-      "⚠️ تم حفظ الطلب، لكن حدث خطأ في إرسال البريد"
+  })
+
+  /* في حالة وجود خطأ — نعرض الخطأ الحقيقي */
+
+  .catch(function(error) {
+
+    console.error("❌ EmailJS error:", error);
+
+    btn.disabled = false;
+    btn.textContent = "✅ تأكيد الطلب";
+
+    var errorMessage = "خطأ غير معروف";
+
+    if(error) {
+      if(error.text) {
+        errorMessage = error.text;
+      } else if(error.message) {
+        errorMessage = error.message;
+      } else {
+        errorMessage = JSON.stringify(error);
+      }
+    }
+
+    alert(
+      "⚠️ فشل إرسال تأكيد الزبون\n\n" +
+      "رسالة الخطأ:\n" +
+      errorMessage
     );
-
-
-    setTimeout(function() {
-
-      go("orders");
-
-    }, 1500);
 
   });
 
 }
-
 
 /* =========================
    عرض الطلبات
@@ -1815,375 +733,148 @@ function submitOrder() {
 
 function renderOrders() {
 
-  var container =
-    document.getElementById(
-      "ordersList"
-    );
+  var container = document.getElementById("ordersList");
+  var orders = JSON.parse(localStorage.getItem("orders") || "[]");
 
-
-  var orders =
-    JSON.parse(
-      localStorage.getItem(
-        "orders"
-      ) || "[]"
-    );
-
-
-  if (orders.length === 0) {
-
-    container.innerHTML =
-      '<div class="empty">📦 لا توجد طلبات حتى الآن</div>';
-
+  if(orders.length === 0) {
+    container.innerHTML = '<div class="empty">📦 لا توجد طلبات حتى الآن</div>';
     return;
-
   }
 
+  container.innerHTML = orders.map(function(o) {
 
-  container.innerHTML =
-    orders
-      .map(function(o) {
+    return `
+      <div class="order">
+        <b>${o.game} — ${o.package}</b>
+        <small>👤 ${o.customerName}</small>
+        <small>📱 ${o.customerPhone}</small>
+        <small>📧 ${o.customerEmail}</small>
+        <small>🆔 Player ID: ${o.playerId}</small>
+        <small>💰 السعر: ${o.price} دج</small>
+        <small>💳 الدفع: ${o.payment}</small>
+        <small>🔢 رقم الطلب: ${o.id}</small>
+        <small>📅 ${o.date}</small>
+        <span class="status">${o.status}</span>
+      </div>
+    `;
 
-        return `
-
-          <div class="order">
-
-            <b>
-              ${o.game} — ${o.package}
-            </b>
-
-            <small>
-              👤 ${o.customerName}
-            </small>
-
-            <small>
-              📱 ${o.customerPhone}
-            </small>
-
-            <small>
-              📧 ${o.customerEmail}
-            </small>
-
-            <small>
-              🆔 Player ID:
-              ${o.playerId}
-            </small>
-
-            <small>
-              💰 السعر:
-              ${o.price} دج
-            </small>
-
-            <small>
-              💳 الدفع:
-              ${o.payment}
-            </small>
-
-            <small>
-              🔢 رقم الطلب:
-              ${o.id}
-            </small>
-
-            <small>
-              📅 ${o.date}
-            </small>
-
-            <span class="status">
-              ${o.status}
-            </span>
-
-          </div>
-
-        `;
-
-      })
-      .join("");
-
+  }).join("");
 }
 
-
 /* =========================
-   حفظ الحساب
+   الحساب
 ========================= */
 
 function saveAccount() {
 
-  var name =
-    document
-      .getElementById(
-        "accName"
-      )
-      .value
-      .trim();
+  var name = document.getElementById("accName").value.trim();
+  var phone = document.getElementById("accPhone").value.trim();
 
+  if(!name) { showToast("⚠️ اكتب اسمك"); return; }
+  if(!phone) { showToast("⚠️ اكتب رقم الهاتف"); return; }
 
-  var phone =
-    document
-      .getElementById(
-        "accPhone"
-      )
-      .value
-      .trim();
-
-
-  if (!name) {
-
-    showToast(
-      "⚠️ اكتب اسمك"
-    );
-
-    return;
-
-  }
-
-
-  if (!phone) {
-
-    showToast(
-      "⚠️ اكتب رقم الهاتف"
-    );
-
-    return;
-
-  }
-
-
-  localStorage.setItem(
-    "customerName",
-    name
-  );
-
-
-  localStorage.setItem(
-    "customerPhone",
-    phone
-  );
-
+  localStorage.setItem("customerName", name);
+  localStorage.setItem("customerPhone", phone);
 
   updateUserChip();
-
-
-  showToast(
-    "✅ تم حفظ معلوماتك"
-  );
-
+  showToast("✅ تم حفظ معلوماتك");
 }
-
-
-/* =========================
-   تحميل الحساب
-========================= */
 
 function loadAccount() {
 
-  document.getElementById(
-    "accName"
-  ).value =
-    localStorage.getItem(
-      "customerName"
-    ) || "";
+  document.getElementById("accName").value =
+    localStorage.getItem("customerName") || "";
 
-
-  document.getElementById(
-    "accPhone"
-  ).value =
-    localStorage.getItem(
-      "customerPhone"
-    ) || "";
-
+  document.getElementById("accPhone").value =
+    localStorage.getItem("customerPhone") || "";
 }
-
-
-/* =========================
-   اسم المستخدم
-========================= */
 
 function updateUserChip() {
 
-  var name =
-    localStorage.getItem(
-      "customerName"
-    );
+  var name = localStorage.getItem("customerName");
+  var chip = document.getElementById("userChip");
 
-
-  var chip =
-    document.getElementById(
-      "userChip"
-    );
-
-
-  if (name) {
-
-    chip.textContent =
-      "👤 " + name;
-
+  if(name) {
+    chip.textContent = "👤 " + name;
   } else {
-
     chip.textContent = "";
-
   }
-
 }
-
 
 /* =========================
    الإدارة
 ========================= */
 
 var adminTaps = 0;
-
 var adminTapTimer = null;
 
+document.getElementById("logoTap").addEventListener("click", function() {
 
-document
-  .getElementById("logoTap")
-  .addEventListener(
-    "click",
-    function() {
+  adminTaps++;
 
-      adminTaps++;
+  clearTimeout(adminTapTimer);
 
+  adminTapTimer = setTimeout(function() { adminTaps = 0; }, 2000);
 
-      clearTimeout(
-        adminTapTimer
-      );
+  if(adminTaps >= 5) {
+    adminTaps = 0;
+    go("admin");
+  }
 
-
-      adminTapTimer =
-        setTimeout(function() {
-
-          adminTaps = 0;
-
-        }, 2000);
-
-
-      if (adminTaps >= 5) {
-
-        adminTaps = 0;
-
-        go("admin");
-
-      }
-
-    }
-  );
-
+});
 
 function adminIsLogged() {
-
-  return (
-    sessionStorage.getItem(
-      "adminLogged"
-    ) === "1"
-  );
-
+  return sessionStorage.getItem("adminLogged") === "1";
 }
-
 
 function showAdminLogin() {
 
-  if (adminIsLogged()) {
+  if(adminIsLogged()) {
 
-    document.getElementById(
-      "adminLocked"
-    ).style.display = "none";
-
-
-    document.getElementById(
-      "adminPanel"
-    ).style.display = "block";
-
-
+    document.getElementById("adminLocked").style.display = "none";
+    document.getElementById("adminPanel").style.display = "block";
     renderAdminOrders();
 
   } else {
 
-    document.getElementById(
-      "adminLocked"
-    ).style.display = "block";
-
-
-    document.getElementById(
-      "adminPanel"
-    ).style.display = "none";
+    document.getElementById("adminLocked").style.display = "block";
+    document.getElementById("adminPanel").style.display = "none";
 
   }
 
 }
-
 
 function adminLogin() {
 
-  var pass =
-    document
-      .getElementById(
-        "adminPass"
-      )
-      .value;
+  var pass = document.getElementById("adminPass").value;
 
+  if(pass === ADMIN_PASSWORD) {
 
-  if (pass === ADMIN_PASSWORD) {
-
-    sessionStorage.setItem(
-      "adminLogged",
-      "1"
-    );
-
-
-    document.getElementById(
-      "adminPass"
-    ).value = "";
-
-
+    sessionStorage.setItem("adminLogged", "1");
+    document.getElementById("adminPass").value = "";
     showAdminLogin();
-
-
-    showToast(
-      "✅ تم تسجيل الدخول"
-    );
+    showToast("✅ تم تسجيل الدخول");
 
   } else {
 
-    showToast(
-      "❌ كلمة المرور خاطئة"
-    );
+    showToast("❌ كلمة المرور خاطئة");
 
   }
 
 }
 
-
 function adminLogout() {
-
-  sessionStorage.removeItem(
-    "adminLogged"
-  );
-
-
+  sessionStorage.removeItem("adminLogged");
   go("home");
-
 }
-
 
 function getAdminOrders() {
-
-  return JSON.parse(
-    localStorage.getItem(
-      "adminOrders"
-    ) || "[]"
-  );
-
+  return JSON.parse(localStorage.getItem("adminOrders") || "[]");
 }
-
 
 function saveAdminOrders(list) {
-
-  localStorage.setItem(
-    "adminOrders",
-    JSON.stringify(list)
-  );
-
+  localStorage.setItem("adminOrders", JSON.stringify(list));
 }
-
 
 /* =========================
    إضافة طلب يدوي
@@ -2191,174 +882,62 @@ function saveAdminOrders(list) {
 
 function adminAddOrder() {
 
-  var name =
-    document
-      .getElementById("adName")
-      .value
-      .trim();
+  var name = document.getElementById("adName").value.trim();
+  var phone = document.getElementById("adPhone").value.trim();
+  var game = document.getElementById("adGame").value.trim();
+  var pkg = document.getElementById("adPkg").value.trim();
+  var price = document.getElementById("adPrice").value.trim();
+  var playerId = document.getElementById("adPlayerId").value.trim();
+  var email = document.getElementById("adEmail").value.trim();
 
-
-  var phone =
-    document
-      .getElementById("adPhone")
-      .value
-      .trim();
-
-
-  var game =
-    document
-      .getElementById("adGame")
-      .value
-      .trim();
-
-
-  var pkg =
-    document
-      .getElementById("adPkg")
-      .value
-      .trim();
-
-
-  var price =
-    document
-      .getElementById("adPrice")
-      .value
-      .trim();
-
-
-  var playerId =
-    document
-      .getElementById("adPlayerId")
-      .value
-      .trim();
-
-
-  var email =
-    document
-      .getElementById("adEmail")
-      .value
-      .trim();
-
-
-  if (!name || !game || !pkg) {
-
-    showToast(
-      "⚠️ أكمل الحقول الأساسية"
-    );
-
+  if(!name || !game || !pkg) {
+    showToast("⚠️ أكمل الحقول الأساسية");
     return;
-
   }
 
-
-  var orders =
-    getAdminOrders();
-
+  var orders = getAdminOrders();
 
   orders.unshift({
-
-    id:
-      "ORD-" + Date.now(),
-
-    customerName:
-      name,
-
-    customerPhone:
-      phone,
-
-    playerId:
-      playerId,
-
-    email:
-      email,
-
-    game:
-      game,
-
-    package:
-      pkg,
-
-    price:
-      price + " دج",
-
-    status:
-      "قيد المراجعة",
-
-    date:
-      new Date()
-        .toLocaleString("ar-DZ")
-
+    id:"ORD-" + Date.now(),
+    customerName:name,
+    customerPhone:phone,
+    playerId:playerId,
+    email:email,
+    game:game,
+    package:pkg,
+    price:price + " دج",
+    status:"قيد المراجعة",
+    date:new Date().toLocaleString("ar-DZ")
   });
-
 
   saveAdminOrders(orders);
 
-
-  [
-    "adName",
-    "adPhone",
-    "adGame",
-    "adPkg",
-    "adPrice",
-    "adPlayerId",
-    "adEmail"
-  ]
-
-  .forEach(function(id) {
-
-    document
-      .getElementById(id)
-      .value = "";
-
-  });
-
+  ["adName","adPhone","adGame","adPkg","adPrice","adPlayerId","adEmail"]
+    .forEach(function(id) {
+      document.getElementById(id).value = "";
+    });
 
   renderAdminOrders();
-
-
-  showToast(
-    "✅ تمت إضافة الطلب"
-  );
-
+  showToast("✅ تمت إضافة الطلب");
 }
-
 
 /* =========================
    تغيير حالة الطلب
 ========================= */
 
-function adminSetStatus(id, status) {
+function adminSetStatus(id,status) {
 
-  var orders =
-    getAdminOrders();
+  var orders = getAdminOrders();
 
-
-  orders =
-    orders.map(function(o) {
-
-      if (o.id === id) {
-
-        o.status = status;
-
-      }
-
-      return o;
-
-    });
-
+  orders = orders.map(function(o) {
+    if(o.id === id) { o.status = status; }
+    return o;
+  });
 
   saveAdminOrders(orders);
-
-
   renderAdminOrders();
-
-
-  showToast(
-    "✅ تم تحديث الحالة"
-  );
-
+  showToast("✅ تم تحديث الحالة");
 }
-
 
 /* =========================
    حذف طلب
@@ -2366,161 +945,76 @@ function adminSetStatus(id, status) {
 
 function adminDeleteOrder(id) {
 
-  if (
-    !confirm(
-      "هل تريد حذف هذا الطلب؟"
-    )
-  ) {
+  if(!confirm("هل تريد حذف هذا الطلب؟")) { return; }
 
-    return;
-
-  }
-
-
-  var orders =
-    getAdminOrders()
-      .filter(function(o) {
-
-        return o.id !== id;
-
-      });
-
+  var orders = getAdminOrders().filter(function(o) {
+    return o.id !== id;
+  });
 
   saveAdminOrders(orders);
-
-
   renderAdminOrders();
-
 }
 
-
 /* =========================
-   عرض الطلبات في الإدارة
+   عرض طلبات الإدارة
 ========================= */
 
 function renderAdminOrders() {
 
-  var container =
-    document.getElementById(
-      "adminOrders"
-    );
+  var container = document.getElementById("adminOrders");
+  var orders = getAdminOrders();
 
-
-  var orders =
-    getAdminOrders();
-
-
-  if (orders.length === 0) {
-
-    container.innerHTML =
-      '<div class="empty">📭 لا توجد طلبات</div>';
-
+  if(orders.length === 0) {
+    container.innerHTML = '<div class="empty">📭 لا توجد طلبات</div>';
     return;
-
   }
 
+  container.innerHTML = orders.map(function(o) {
 
-  container.innerHTML =
-    orders
-      .map(function(o) {
+    var statusColor =
+      o.status === "تم الشحن"
+        ? "#14532d"
+        : o.status === "ملغي"
+          ? "#7f1d1d"
+          : "#3a2f10";
 
-        var statusColor =
+    return `
+      <div class="order">
 
-          o.status === "تم الشحن"
-            ? "#14532d"
-            : o.status === "ملغي"
-              ? "#7f1d1d"
-              : "#3a2f10";
+        <b>${o.game} — ${o.package}</b>
 
+        <small>👤 ${o.customerName}</small>
+        <small>📱 ${o.customerPhone}</small>
+        <small>🆔 Player ID: ${o.playerId}</small>
 
-        return `
+        ${o.email ? `<small>📧 ${o.email}</small>` : ""}
 
-          <div class="order">
+        <small>💰 ${o.price} · 🔢 ${o.id}</small>
+        <small>📅 ${o.date}</small>
 
-            <b>
-              ${o.game} — ${o.package}
-            </b>
+        <span class="status" style="background:${statusColor}">${o.status}</span>
 
-            <small>
-              👤 ${o.customerName}
-            </small>
+        <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
 
-            <small>
-              📱 ${o.customerPhone}
-            </small>
+          <button class="btn btn-sm" style="background:#14532d"
+            onclick="adminSetStatus('${o.id}','تم الشحن')">✅ تم الشحن</button>
 
-            <small>
-              🆔 Player ID: ${o.playerId}
-            </small>
+          <button class="btn btn-sm" style="background:#3a2f10"
+            onclick="adminSetStatus('${o.id}','قيد المراجعة')">⏳ مراجعة</button>
 
-            ${
-              o.email
-                ? `<small>📧 ${o.email}</small>`
-                : ""
-            }
+          <button class="btn btn-sm" style="background:#7f1d1d"
+            onclick="adminSetStatus('${o.id}','ملغي')">❌ إلغاء</button>
 
-            <small>
-              💰 ${o.price} · 🔢 ${o.id}
-            </small>
+          <button class="btn btn-sm" style="background:#334155"
+            onclick="adminDeleteOrder('${o.id}')">🗑️ حذف</button>
 
-            <small>
-              📅 ${o.date}
-            </small>
+        </div>
 
-            <span
-              class="status"
-              style="background:${statusColor}"
-            >
-              ${o.status}
-            </span>
+      </div>
+    `;
 
-            <div
-              style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap"
-            >
-
-              <button
-                class="btn btn-sm"
-                style="background:#14532d"
-                onclick="adminSetStatus('${o.id}','تم الشحن')"
-              >
-                ✅ تم الشحن
-              </button>
-
-              <button
-                class="btn btn-sm"
-                style="background:#3a2f10"
-                onclick="adminSetStatus('${o.id}','قيد المراجعة')"
-              >
-                ⏳ مراجعة
-              </button>
-
-              <button
-                class="btn btn-sm"
-                style="background:#7f1d1d"
-                onclick="adminSetStatus('${o.id}','ملغي')"
-              >
-                ❌ إلغاء
-              </button>
-
-              <button
-                class="btn btn-sm"
-                style="background:#334155"
-                onclick="adminDeleteOrder('${o.id}')"
-              >
-                🗑️ حذف
-              </button>
-
-            </div>
-
-          </div>
-
-        `;
-
-      })
-      .join("");
-
+  }).join("");
 }
-
 
 /* =========================
    الرسائل
@@ -2528,35 +1022,17 @@ function renderAdminOrders() {
 
 function showToast(message) {
 
-  var toast =
-    document.getElementById(
-      "toast"
-    );
+  var toast = document.getElementById("toast");
 
+  toast.textContent = message;
+  toast.style.display = "block";
 
-  toast.textContent =
-    message;
+  clearTimeout(window.toastTimer);
 
-
-  toast.style.display =
-    "block";
-
-
-  clearTimeout(
-    window.toastTimer
-  );
-
-
-  window.toastTimer =
-    setTimeout(function() {
-
-      toast.style.display =
-        "none";
-
-    }, 3000);
-
+  window.toastTimer = setTimeout(function() {
+    toast.style.display = "none";
+  }, 3000);
 }
-
 
 /* =========================
    التشغيل الأول
