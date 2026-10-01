@@ -51,6 +51,7 @@ header {
 .logo {
   font-size: 19px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .logo span {
@@ -122,14 +123,26 @@ header {
 .game-card {
   background: var(--card);
   border-radius: 12px;
-  padding: 16px 12px;
+  padding: 12px;
   text-align: center;
   border: 1px solid #262c4d;
+  overflow: hidden;
 }
 
 .game-card .icon {
-  font-size: 38px;
-  margin-bottom: 8px;
+  width: 100%;
+  height: 145px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #11162a;
+}
+
+.game-card .icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .game-card h3 {
@@ -209,7 +222,9 @@ label {
 }
 
 input[type=text],
-input[type=tel] {
+input[type=tel],
+input[type=email],
+input[type=password] {
   width: 100%;
   padding: 12px 14px;
   border-radius: 10px;
@@ -361,7 +376,7 @@ nav button.on {
 
 <header>
 
-  <div class="logo">
+  <div class="logo" id="logoTap">
     ⚡ متجر <span>الشحن</span>
   </div>
 
@@ -617,6 +632,17 @@ nav button.on {
 
 
   <label>
+    📧 بريدك الإلكتروني (Gmail)
+  </label>
+
+  <input
+    type="email"
+    id="customerEmail"
+    placeholder="example@gmail.com"
+  >
+
+
+  <label>
     🆔 Player ID الخاص بك
   </label>
 
@@ -764,6 +790,111 @@ nav button.on {
 
 
 <!-- =========================
+     الإدارة
+========================= -->
+
+<section
+  class="page"
+  id="p-admin"
+>
+
+  <h2 class="sec-title">
+    🔐 لوحة الإدارة
+  </h2>
+
+  <div id="adminLocked">
+
+    <div class="info-box">
+      🔑 أدخل كلمة المرور.
+    </div>
+
+    <br>
+
+    <input
+      type="password"
+      id="adminPass"
+      placeholder="كلمة المرور"
+    >
+
+    <br><br>
+
+    <button
+      class="btn btn-block"
+      onclick="adminLogin()"
+    >
+      دخول
+    </button>
+
+  </div>
+
+
+  <div
+    id="adminPanel"
+    style="display:none"
+  >
+
+    <div class="info-box">
+      📥 انسخ الطلب من Gmail والصقه هنا لتتبع حالته.
+    </div>
+
+    <br>
+
+    <label>👤 اسم الزبون</label>
+    <input type="text" id="adName">
+
+    <label>📱 الهاتف</label>
+    <input type="tel" id="adPhone">
+
+    <label>🎮 اللعبة</label>
+    <input type="text" id="adGame">
+
+    <label>💎 الباقة</label>
+    <input type="text" id="adPkg">
+
+    <label>💰 السعر (دج)</label>
+    <input type="text" id="adPrice" inputmode="numeric">
+
+    <label>🆔 Player ID</label>
+    <input type="text" id="adPlayerId">
+
+    <label>📧 إيميل الزبون</label>
+    <input type="text" id="adEmail">
+
+    <br><br>
+
+    <button
+      class="btn btn-block"
+      onclick="adminAddOrder()"
+    >
+      ➕ إضافة الطلب
+    </button>
+
+    <br>
+
+    <hr style="border-color:#262c4d;margin:20px 0">
+
+    <h2 class="sec-title">
+      📋 الطلبات
+    </h2>
+
+    <div id="adminOrders"></div>
+
+    <br>
+
+    <button
+      class="btn btn-block"
+      onclick="adminLogout()"
+      style="background:#7f1d1d"
+    >
+      🚪 خروج
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
      القائمة السفلية
 ========================= -->
 
@@ -844,8 +975,11 @@ var GAMES = [
 
   {
     id: "pubg",
-    icon: "🔫",
+
+    image: "images/pubg.jpg",
+
     name: "PUBG Mobile",
+
     sub: "شدات UC",
 
     pkgs: [
@@ -871,8 +1005,11 @@ var GAMES = [
 
   {
     id: "ff",
-    icon: "🔥",
+
+    image: "images/freefire.jpg",
+
     name: "Free Fire",
+
     sub: "جواهر",
 
     pkgs: [
@@ -898,8 +1035,11 @@ var GAMES = [
 
   {
     id: "fc",
-    icon: "⚽",
+
+    image: "images/fcmobile.jpg",
+
     name: "FC Mobile",
+
     sub: "نقاط FIFA",
 
     pkgs: [
@@ -921,8 +1061,11 @@ var GAMES = [
 
   {
     id: "other",
-    icon: "🕹️",
+
+    image: "images/other.jpg",
+
     name: "ألعاب أخرى",
+
     sub: "اطلب لعبتك",
 
     pkgs: [
@@ -970,8 +1113,25 @@ var STORE_RIP =
 var EMAILJS_SERVICE =
   "service_npsrgnv";
 
+
+/* قالب الطلب الذي يصلك أنت */
+
 var EMAILJS_TEMPLATE =
   "template_o5ejh9d";
+
+
+/* قالب تأكيد الطلب الذي يصل للزبون */
+
+var EMAILJS_TEMPLATE_CUSTOMER =
+  "template_n04bh31";
+
+
+/* =========================
+   كلمة مرور الإدارة
+========================= */
+
+var ADMIN_PASSWORD =
+  "smail2931";
 
 
 /* =========================
@@ -1028,6 +1188,13 @@ function go(p) {
   }
 
 
+  if (p === "admin") {
+
+    showAdminLogin();
+
+  }
+
+
   window.scrollTo(0, 0);
 
 }
@@ -1047,7 +1214,13 @@ function gameCards(el) {
         <div class="game-card">
 
           <div class="icon">
-            ${g.icon}
+
+            <img
+              src="${g.image}"
+              alt="${g.name}"
+              onerror="this.style.display='none';this.parentElement.innerHTML='🎮';"
+            >
+
           </div>
 
           <h3>
@@ -1127,6 +1300,11 @@ function startTopup(id) {
     localStorage.getItem(
       "customerPhone"
     ) || "";
+
+
+  document.getElementById(
+    "customerEmail"
+  ).value = "";
 
 
   document.getElementById(
@@ -1290,6 +1468,15 @@ function submitOrder() {
       .trim();
 
 
+  var customerEmail =
+    document
+      .getElementById(
+        "customerEmail"
+      )
+      .value
+      .trim();
+
+
   var playerId =
     document
       .getElementById(
@@ -1298,8 +1485,6 @@ function submitOrder() {
       .value
       .trim();
 
-
-  /* التحقق من الاسم */
 
   if (!customerName) {
 
@@ -1312,8 +1497,6 @@ function submitOrder() {
   }
 
 
-  /* التحقق من الهاتف */
-
   if (!customerPhone) {
 
     showToast(
@@ -1325,7 +1508,16 @@ function submitOrder() {
   }
 
 
-  /* التحقق من Player ID */
+  if (!customerEmail) {
+
+    showToast(
+      "⚠️ يرجى كتابة بريدك الإلكتروني"
+    );
+
+    return;
+
+  }
+
 
   if (!playerId) {
 
@@ -1338,8 +1530,6 @@ function submitOrder() {
   }
 
 
-  /* التحقق من الباقة */
-
   if (!curPkg) {
 
     showToast(
@@ -1350,8 +1540,6 @@ function submitOrder() {
 
   }
 
-
-  /* التحقق من الدفع */
 
   if (!curPay) {
 
@@ -1371,13 +1559,17 @@ function submitOrder() {
 
   var order = {
 
-    id: orderId,
+    id:
+      orderId,
 
     customerName:
       customerName,
 
     customerPhone:
       customerPhone,
+
+    customerEmail:
+      customerEmail,
 
     playerId:
       playerId,
@@ -1451,7 +1643,9 @@ function submitOrder() {
     "⏳ جاري إرسال الطلب...";
 
 
-  /* بيانات EmailJS */
+  /* =========================
+     بيانات إيميل الإدارة
+  ========================= */
 
   var templateParams = {
 
@@ -1463,6 +1657,9 @@ function submitOrder() {
 
     customer_phone:
       customerPhone,
+
+    customer_email:
+      customerEmail,
 
     player_id:
       playerId,
@@ -1488,60 +1685,126 @@ function submitOrder() {
   };
 
 
-  emailjs
-    .send(
+  /* =========================
+     إرسال الطلب إلى الإدارة
+  ========================= */
+
+  var adminEmailPromise =
+
+    emailjs.send(
+
       EMAILJS_SERVICE,
+
       EMAILJS_TEMPLATE,
+
       templateParams
-    )
 
-    .then(function() {
-
-      btn.disabled = false;
-
-      btn.textContent =
-        "✅ تأكيد الطلب";
+    );
 
 
-      showToast(
-        "✅ تم إرسال طلبك بنجاح"
-      );
+  /* =========================
+     إيميل تأكيد الزبون
+  ========================= */
+
+  var customerEmailPromise =
+
+    emailjs.send(
+
+      EMAILJS_SERVICE,
+
+      EMAILJS_TEMPLATE_CUSTOMER,
+
+      {
+
+        customer_email:
+          customerEmail,
+
+        customer_name:
+          customerName,
+
+        order_id:
+          orderId,
+
+        game:
+          curGame.name,
+
+        package:
+          curPkg.n,
+
+        price:
+          curPkg.p + " دج",
+
+        payment:
+          curPay,
+
+        player_id:
+          playerId,
+
+        order_date:
+          order.date,
+
+        status:
+          order.status
+
+      }
+
+    );
 
 
-      setTimeout(function() {
+  /* ننتظر الإيميلين */
 
-        go("orders");
+  Promise.all([
+    adminEmailPromise,
+    customerEmailPromise
+  ])
 
-      }, 1200);
+  .then(function() {
 
-    })
+    btn.disabled = false;
 
-    .catch(function(error) {
-
-      console.error(
-        "EmailJS Error:",
-        error
-      );
-
-
-      btn.disabled = false;
-
-      btn.textContent =
-        "✅ تأكيد الطلب";
+    btn.textContent =
+      "✅ تأكيد الطلب";
 
 
-      showToast(
-        "⚠️ تم حفظ الطلب، لكن تعذر إرسال البريد"
-      );
+    showToast(
+      "✅ تم إرسال الطلب ووصلت رسالة تأكيد إلى بريدك"
+    );
 
 
-      setTimeout(function() {
+    setTimeout(function() {
 
-        go("orders");
+      go("orders");
 
-      }, 1500);
+    }, 1500);
 
-    });
+  })
+
+  .catch(function(error) {
+
+    console.error(
+      "EmailJS Error:",
+      error
+    );
+
+
+    btn.disabled = false;
+
+    btn.textContent =
+      "✅ تأكيد الطلب";
+
+
+    showToast(
+      "⚠️ تم حفظ الطلب، لكن حدث خطأ في إرسال البريد"
+    );
+
+
+    setTimeout(function() {
+
+      go("orders");
+
+    }, 1500);
+
+  });
 
 }
 
@@ -1594,6 +1857,10 @@ function renderOrders() {
 
             <small>
               📱 ${o.customerPhone}
+            </small>
+
+            <small>
+              📧 ${o.customerEmail}
             </small>
 
             <small>
@@ -1727,7 +1994,7 @@ function loadAccount() {
 
 
 /* =========================
-   اسم المستخدم في الأعلى
+   اسم المستخدم
 ========================= */
 
 function updateUserChip() {
@@ -1754,6 +2021,503 @@ function updateUserChip() {
     chip.textContent = "";
 
   }
+
+}
+
+
+/* =========================
+   الإدارة
+========================= */
+
+var adminTaps = 0;
+
+var adminTapTimer = null;
+
+
+document
+  .getElementById("logoTap")
+  .addEventListener(
+    "click",
+    function() {
+
+      adminTaps++;
+
+
+      clearTimeout(
+        adminTapTimer
+      );
+
+
+      adminTapTimer =
+        setTimeout(function() {
+
+          adminTaps = 0;
+
+        }, 2000);
+
+
+      if (adminTaps >= 5) {
+
+        adminTaps = 0;
+
+        go("admin");
+
+      }
+
+    }
+  );
+
+
+function adminIsLogged() {
+
+  return (
+    sessionStorage.getItem(
+      "adminLogged"
+    ) === "1"
+  );
+
+}
+
+
+function showAdminLogin() {
+
+  if (adminIsLogged()) {
+
+    document.getElementById(
+      "adminLocked"
+    ).style.display = "none";
+
+
+    document.getElementById(
+      "adminPanel"
+    ).style.display = "block";
+
+
+    renderAdminOrders();
+
+  } else {
+
+    document.getElementById(
+      "adminLocked"
+    ).style.display = "block";
+
+
+    document.getElementById(
+      "adminPanel"
+    ).style.display = "none";
+
+  }
+
+}
+
+
+function adminLogin() {
+
+  var pass =
+    document
+      .getElementById(
+        "adminPass"
+      )
+      .value;
+
+
+  if (pass === ADMIN_PASSWORD) {
+
+    sessionStorage.setItem(
+      "adminLogged",
+      "1"
+    );
+
+
+    document.getElementById(
+      "adminPass"
+    ).value = "";
+
+
+    showAdminLogin();
+
+
+    showToast(
+      "✅ تم تسجيل الدخول"
+    );
+
+  } else {
+
+    showToast(
+      "❌ كلمة المرور خاطئة"
+    );
+
+  }
+
+}
+
+
+function adminLogout() {
+
+  sessionStorage.removeItem(
+    "adminLogged"
+  );
+
+
+  go("home");
+
+}
+
+
+function getAdminOrders() {
+
+  return JSON.parse(
+    localStorage.getItem(
+      "adminOrders"
+    ) || "[]"
+  );
+
+}
+
+
+function saveAdminOrders(list) {
+
+  localStorage.setItem(
+    "adminOrders",
+    JSON.stringify(list)
+  );
+
+}
+
+
+/* =========================
+   إضافة طلب يدوي
+========================= */
+
+function adminAddOrder() {
+
+  var name =
+    document
+      .getElementById("adName")
+      .value
+      .trim();
+
+
+  var phone =
+    document
+      .getElementById("adPhone")
+      .value
+      .trim();
+
+
+  var game =
+    document
+      .getElementById("adGame")
+      .value
+      .trim();
+
+
+  var pkg =
+    document
+      .getElementById("adPkg")
+      .value
+      .trim();
+
+
+  var price =
+    document
+      .getElementById("adPrice")
+      .value
+      .trim();
+
+
+  var playerId =
+    document
+      .getElementById("adPlayerId")
+      .value
+      .trim();
+
+
+  var email =
+    document
+      .getElementById("adEmail")
+      .value
+      .trim();
+
+
+  if (!name || !game || !pkg) {
+
+    showToast(
+      "⚠️ أكمل الحقول الأساسية"
+    );
+
+    return;
+
+  }
+
+
+  var orders =
+    getAdminOrders();
+
+
+  orders.unshift({
+
+    id:
+      "ORD-" + Date.now(),
+
+    customerName:
+      name,
+
+    customerPhone:
+      phone,
+
+    playerId:
+      playerId,
+
+    email:
+      email,
+
+    game:
+      game,
+
+    package:
+      pkg,
+
+    price:
+      price + " دج",
+
+    status:
+      "قيد المراجعة",
+
+    date:
+      new Date()
+        .toLocaleString("ar-DZ")
+
+  });
+
+
+  saveAdminOrders(orders);
+
+
+  [
+    "adName",
+    "adPhone",
+    "adGame",
+    "adPkg",
+    "adPrice",
+    "adPlayerId",
+    "adEmail"
+  ]
+
+  .forEach(function(id) {
+
+    document
+      .getElementById(id)
+      .value = "";
+
+  });
+
+
+  renderAdminOrders();
+
+
+  showToast(
+    "✅ تمت إضافة الطلب"
+  );
+
+}
+
+
+/* =========================
+   تغيير حالة الطلب
+========================= */
+
+function adminSetStatus(id, status) {
+
+  var orders =
+    getAdminOrders();
+
+
+  orders =
+    orders.map(function(o) {
+
+      if (o.id === id) {
+
+        o.status = status;
+
+      }
+
+      return o;
+
+    });
+
+
+  saveAdminOrders(orders);
+
+
+  renderAdminOrders();
+
+
+  showToast(
+    "✅ تم تحديث الحالة"
+  );
+
+}
+
+
+/* =========================
+   حذف طلب
+========================= */
+
+function adminDeleteOrder(id) {
+
+  if (
+    !confirm(
+      "هل تريد حذف هذا الطلب؟"
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  var orders =
+    getAdminOrders()
+      .filter(function(o) {
+
+        return o.id !== id;
+
+      });
+
+
+  saveAdminOrders(orders);
+
+
+  renderAdminOrders();
+
+}
+
+
+/* =========================
+   عرض الطلبات في الإدارة
+========================= */
+
+function renderAdminOrders() {
+
+  var container =
+    document.getElementById(
+      "adminOrders"
+    );
+
+
+  var orders =
+    getAdminOrders();
+
+
+  if (orders.length === 0) {
+
+    container.innerHTML =
+      '<div class="empty">📭 لا توجد طلبات</div>';
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    orders
+      .map(function(o) {
+
+        var statusColor =
+
+          o.status === "تم الشحن"
+            ? "#14532d"
+            : o.status === "ملغي"
+              ? "#7f1d1d"
+              : "#3a2f10";
+
+
+        return `
+
+          <div class="order">
+
+            <b>
+              ${o.game} — ${o.package}
+            </b>
+
+            <small>
+              👤 ${o.customerName}
+            </small>
+
+            <small>
+              📱 ${o.customerPhone}
+            </small>
+
+            <small>
+              🆔 Player ID: ${o.playerId}
+            </small>
+
+            ${
+              o.email
+                ? `<small>📧 ${o.email}</small>`
+                : ""
+            }
+
+            <small>
+              💰 ${o.price} · 🔢 ${o.id}
+            </small>
+
+            <small>
+              📅 ${o.date}
+            </small>
+
+            <span
+              class="status"
+              style="background:${statusColor}"
+            >
+              ${o.status}
+            </span>
+
+            <div
+              style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap"
+            >
+
+              <button
+                class="btn btn-sm"
+                style="background:#14532d"
+                onclick="adminSetStatus('${o.id}','تم الشحن')"
+              >
+                ✅ تم الشحن
+              </button>
+
+              <button
+                class="btn btn-sm"
+                style="background:#3a2f10"
+                onclick="adminSetStatus('${o.id}','قيد المراجعة')"
+              >
+                ⏳ مراجعة
+              </button>
+
+              <button
+                class="btn btn-sm"
+                style="background:#7f1d1d"
+                onclick="adminSetStatus('${o.id}','ملغي')"
+              >
+                ❌ إلغاء
+              </button>
+
+              <button
+                class="btn btn-sm"
+                style="background:#334155"
+                onclick="adminDeleteOrder('${o.id}')"
+              >
+                🗑️ حذف
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
 
 }
 
